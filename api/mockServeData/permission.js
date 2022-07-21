@@ -57,7 +57,7 @@ export default {
           message: '获取成功'
         }
       }
-    } else if (username === 'xiaoxiao' && password === 'xiaoxiao') {
+    } else if (username === 'hello' && password === 'hello') {
       return {
         code: 20000,
         data: {
