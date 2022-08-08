@@ -1,0 +1,14 @@
+{
+  "name": "vue-cli",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^9.4.0",
+    "download-git-repo": "^3.0.2"
+  },
+  "bin": {
+    "my-cli": "bin/cli.js"
+  }
+}
