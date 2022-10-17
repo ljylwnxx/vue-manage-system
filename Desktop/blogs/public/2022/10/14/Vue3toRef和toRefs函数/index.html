@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://example.com/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/ref%E5%87%BD%E6%95%B0%E9%AA%8C%E8%AF%81%E4%BB%A3%E7%A0%81.png">
 <meta property="og:image" content="http://example.com/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/ref%E5%87%BD%E6%95%B0%E9%AA%8C%E8%AF%81%E7%BB%93%E6%9E%9C.png">
 <meta property="article:published_time" content="2022-10-14T13:48:21.000Z">
-<meta property="article:modified_time" content="2022-10-17T02:04:23.236Z">
+<meta property="article:modified_time" content="2022-10-17T02:21:14.743Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="vue3">
 <meta name="twitter:card" content="summary">
@@ -110,11 +110,12 @@
 <p>toRef 函数将 boy 对象给包裹了起来，所以说，boy 对象就是源数据。<br>所以说，想知道源数据有没有改变，在点击按钮之后，打印一下 boy 对象，看一下 boy 有没有被改变。<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/toref%E6%89%93%E5%8D%B0body%E4%BB%A3%E7%A0%81.png"></p>
 <p>刷新页面，在点击按钮修改 name 值，然后查看一下控制台打印的 boy 对象<br>![](toref body打印结果.png)<br>发现 boy 对象的 name 值已经从 我是wn. 改为 wn.了，但是页面依旧没有更新。<br>记住了！<br>toRef 函数会与源数据交互，修改响应式数据会造成源数据的修改，但是他的修改不会造成视图层数据的更新。</p>
 <p>ref 函数验证<br>那 ref 函数可以将对象里面的属性值变成响应式的数据，修改响应式数据，是不会影响到源数据，但是视图层上的数据会被更新,我们测试一下<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/ref%E5%87%BD%E6%95%B0%E9%AA%8C%E8%AF%81%E4%BB%A3%E7%A0%81.png"><br>刷新页面，点击按钮查看页面控制台打印的结果，主要是看一下被 ref 函数包裹后的数据有没有修改成功，源数据有没有修改成功，最后页面有没有修改，下面看截图<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/ref%E5%87%BD%E6%95%B0%E9%AA%8C%E8%AF%81%E7%BB%93%E6%9E%9C.png"><br>所以再记住！<br>ref 函数可以将对象里面的属性值变成响应式的数据，修改响应式数据，是不会影响到源数据，但是视图层上的数据会被更新</p>
+<p>toRefs 函数<br>toRefs 函数的使用呢，其实和 toRef 函数类似。<br>toRefs 函数用于批量设置多个数据为响应式数据。<br>toRefs 函数与原始数据相交互，修改响应式数据会影响到源数据，但是不会更新视图层。<br>toRefs 函数还可以与其他响应式数据相交互，更加方便处理视图层数据。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/" data-id="cl9c4wn3i000mj43dh7aqcl0s" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/" data-id="cl9c5jbrz000i693d2ok60rwo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue3/" rel="tag">vue3</a></li></ul>
