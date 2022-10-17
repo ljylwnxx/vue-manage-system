@@ -99,12 +99,13 @@
 <p>刷新页面，在点击按钮修改 name 值，然后查看一下控制台打印的 boy 对象<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/torefbody%E6%89%93%E5%8D%B0%E7%BB%93%E6%9E%9C.png"><br>发现 boy 对象的 name 值已经从 我是wn. 改为 wn.了，但是页面依旧没有更新。<br>记住了！<br>toRef 函数会与源数据交互，修改响应式数据会造成源数据的修改，但是他的修改不会造成视图层数据的更新。</p>
 <p>ref 函数验证<br>那 ref 函数可以将对象里面的属性值变成响应式的数据，修改响应式数据，是不会影响到源数据，但是视图层上的数据会被更新,我们测试一下<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/ref%E5%87%BD%E6%95%B0%E9%AA%8C%E8%AF%81%E4%BB%A3%E7%A0%81.png"><br>刷新页面，点击按钮查看页面控制台打印的结果，主要是看一下被 ref 函数包裹后的数据有没有修改成功，源数据有没有修改成功，最后页面有没有修改，下面看截图<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/ref%E5%87%BD%E6%95%B0%E9%AA%8C%E8%AF%81%E7%BB%93%E6%9E%9C.png"><br>所以再记住！<br>ref 函数可以将对象里面的属性值变成响应式的数据，修改响应式数据，是不会影响到源数据，但是视图层上的数据会被更新</p>
 <p>toRefs 函数<br>toRefs 函数的使用呢，其实和 toRef 函数类似。<br>toRefs 函数用于批量设置多个数据为响应式数据。<br>toRefs 函数与原始数据相交互，修改响应式数据会影响到源数据，但是不会更新视图层。<br>toRefs 函数还可以与其他响应式数据相交互，更加方便处理视图层数据。</p>
-<p>toRefs 函数使用<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/refs%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/refs%E4%BD%BF%E7%94%A8%E7%BB%93%E6%9E%9C.png"></p>
+<p>toRefs 函数使用<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/refs%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/refs%E4%BD%BF%E7%94%A8%E7%BB%93%E6%9E%9C.png"><br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/refs%E4%BD%BF%E7%94%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%BF%A1%E6%81%AF.png"><br>修改一下代码，在渲染的时候除了 .属性 之外，还需要 .value<br>    <p>姓名：</p><br>    <p>年龄：</p><br>查看效果<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/refs%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%B8%B8.png"><br>现在可以看到数据显示正常啦！<br>这时可能会有人有疑问，那这不是越来越复杂了吗？本来直接点属性就可以，现在还得点属性点value，不是多此一举吗？<br>这种复杂结构数据我们完全可以使用 reactive 函数来处理呀，渲染最多点一次就可以，但是 toRefs 函数却需要点两次。<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/reactive%E4%BB%A3%E7%A0%81.png"><br>我们不使用 toRefs 函数，而是用之前说的 reactive 函数处理数据。<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/refs%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%B8%B8.png"><br>我们可以看到，页面是可以正常解析的，那为什么我们还有舍近求远的使用 toRefs 函数呢？<br>其实是有原因的。<br>其实 toRefs 函数最大的用处在这里！<br>我们这个 boy 对象里面只有两个参数比较少，如果我们这个对象里面有十个参数或者是更多的话，每次展示的时候都得写那么多遍的 boy 点，是不是很麻烦呢？所以说使用 toRefs 函数就可以解决这个问题，看下面的代码。<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/refs%E8%A7%A3%E5%86%B3%E4%BB%A3%E7%A0%81.png"><br>在 return 抛出 reactive 的时候，使用扩展运算符和 toRefs 函数，就可以实现直接写属性的方式展示数据了。<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/refs%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%B8%B8.png"><br>但是呢，深层次的对象依旧需要通过点来实现。<br>也许你还有疑问，直接扩展运算 reactive 函数也行啊，为啥要套上 toRefs 函数。<br>记住一点，toRefs 函数修改，原始数据被改变，页面不会被触发。</p>
+<p>看下面代码：<br><img src="/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png"><br><img src="/%E6%95%B0%E6%8D%AE%E6%BA%90%E7%BB%93%E6%9E%9C.png"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/" data-id="cl9c67g160001dt3d81y13gie" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/14/Vue3toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/" data-id="cl9c7f5ee0003nz3dbjj1fj83" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue3/" rel="tag">vue3</a></li></ul>
@@ -153,7 +154,7 @@
 <p>ref 函数使用<br>使用 ref 函数很简单，首先要在页面引用，然后就可以直接使用了，具体怎么使用呢，下面为了方便介绍，简单来几个案例。</p>
 <p>ref 函数处理基本数据类型<br>首先提一个需求：页面有一个名称需要显示，有一个按钮，点击按钮的时候修改页面展示的这个名字。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A3%E7%A0%81.png"><br>刷新，可以正常渲染数据，但是点击按钮修改名字的时候，出现问题！<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E5%87%BA%E9%94%99.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%8F%B0.png"><br>为什么使用过 ref 将数据映射为响应式数据还是报错呢？我们可以先打印一下 ref 包裹后，也就是 name_ref 这个参数，看一下结构。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E7%BB%93%E6%9E%84.png"><br>修改代码：<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png"><br>码刷新页面查看效果<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%9F%BA%E6%9C%AC%E4%BF%AE%E6%94%B9%E6%88%90%E5%8A%9F.png"><br>有一点需要说一下哈，就是在单文件组件中，不必写value，因为setup方法会自动解析，简单的可以理解成 html 代码不需要额外操作 value，但是逻辑层需要。</p>
 <p>ref 函数处理复杂数据类型<br>不建议使用 ref 函数处理复杂数据类型（数组、对象等），用 ref 函数处理基本数据类型（数字、字符串等）就可以了。<br>例如我们写一个案例，创建一个个人信息，放到对象里面展示<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%A0%81.png"><br>我们先看一下对象被 ref 函数包裹后的数据结构。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E7%BB%93%E6%9E%84.png"><br>我们修改也通过 value 进行操作<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png"><br>刷新页面，查看效果<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E5%A4%8D%E6%9D%82%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81%E6%88%90%E5%8A%9F.png"></p>
-<p>ref 函数获取单个DOM元素<br>和 vue2 一样，可以使用 ref 获取元素，用法和操作数据类型相似。<br>页面上有一个标签，点击按钮，获取标签的相关数据。<br>![](ref dom代码.png)<br>运行效果<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%88%90%E5%8A%9F.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%89%93%E5%8D%B0.png"></p>
+<p>ref 函数获取单个DOM元素<br>和 vue2 一样，可以使用 ref 获取元素，用法和操作数据类型相似。<br>页面上有一个标签，点击按钮，获取标签的相关数据。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/refdom%E4%BB%A3%E7%A0%81.png"><br>运行效果<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%88%90%E5%8A%9F.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/ref%E6%89%93%E5%8D%B0.png"></p>
 <p>reactive 函数介绍<br>上面说了 ref 函数的基本用法，接下来是 reactive 函数，它的用法与 ref 函数的用法相似，也是将数据变成响应式数据，当数据发生变化时UI也会自动更新。不同的是 ref 用于基本数据类型，而 reactive 是用于复杂数据类型，所以说，不建议用 ref 函数来处理复杂数据类型的原因就是，有 reactive 来处理复杂类型数据。</p>
 <p>reactive 函数使用<br>reactive 函数处理对象<br>reactive 函数用来处理数组或者是对象,写一个案例，操作人的基本信息<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%9C.png"><br>有打印的结果我们可以看见，这时候的数据就不是被包裹在 value 下面了，所以说我们可以直接获取到。<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E5%AF%B9%E8%B1%A1%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png"></p>
 <p>reactive 函数处理数组<br>处理数组的方式和处理对象的方式是一样一样的<br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E6%95%B0%E7%BB%84%E4%BB%A3%E7%A0%81.png"><br><img src="/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/reactive%E6%95%B0%E7%BB%84%E5%A4%84%E7%90%86%E7%BB%93%E6%9E%9C.png"></p>
@@ -161,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/" data-id="cl9c67g1d0003dt3d2pgh1w8z" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/13/vue3ref%E5%92%8Creactive%E5%87%BD%E6%95%B0/" data-id="cl9c7f5em0007nz3d54ly4a9l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue3/" rel="tag">vue3</a></li></ul>
@@ -223,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/" data-id="cl9c67g1i0006dt3d3ufj3rjs" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/13/Vue3setup%E5%87%BD%E6%95%B0/" data-id="cl9c7f5e60001nz3deflr8ohz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue3/" rel="tag">vue3</a></li></ul>
@@ -283,7 +284,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/10/vue3/" data-id="cl9c67g1l0007dt3d9n904caf" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/10/vue3/" data-id="cl9c7f5el0006nz3dfl8j6zi2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue3/" rel="tag">vue3</a></li></ul>
@@ -330,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/30/%E8%B7%A8%E5%9F%9F/" data-id="cl9c67g1t000jdt3df7yg00ub" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/09/30/%E8%B7%A8%E5%9F%9F/" data-id="cl9c7f5es000enz3d82ps0b9f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B7%A8%E5%9F%9F/" rel="tag">跨域</a></li></ul>
@@ -404,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/30/webpack/" data-id="cl9c67g1m0008dt3d5up88n0e" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/30/webpack/" data-id="cl9c7f5eq000cnz3d0l3d3he5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
@@ -491,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" data-id="cl9c67g1s000edt3d51dha9e4" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/25/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" data-id="cl9c7f5et000jnz3d6ih1esyx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" rel="tag">深浅拷贝</a></li></ul>
@@ -560,7 +561,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/16/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" data-id="cl9c67g1q000cdt3d9xs9blyw" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/16/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" data-id="cl9c7f5en0008nz3dg7j4fd58" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="tag">搭建博客</a></li></ul>
