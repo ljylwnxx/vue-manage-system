@@ -997,19 +997,19 @@ links:
   # Member item of page
   items:
     - {
-      title: "ljywnxx Blog",
+      title: "ljylwnxx Blog",
       intro: "主题博客",
       link: "https://hexo.fluid-dev.com/",
       avatar: "/img/favicon.png"
     }
     - {
-      title: "ljywnxx Docs",
+      title: "ljylwnxx Docs",
       intro: "主题使用指南",
       link: "https://hexo.fluid-dev.com/docs/",
       avatar: "/img/favicon.png"
     }
     - {
-      title: "ljywnxx Repo",
+      title: "ljylwnxx Repo",
       intro: "主题 GitHub 仓库",
       link: "https://github.com/fluid-dev/hexo-theme-fluid",
       avatar: "/img/favicon.png"
@@ -1023,7 +1023,7 @@ links:
   # Custom content at the bottom of the links
   custom:
     enable: false
-    content: '<hr><p>在下方留言申请加入我的友链，按如下格式提供信息：</p><ul><li>博客名：ljywnxx</li><li>简介：Fluid 主题官方博客</li><li>链接：https://hexo.fluid-dev.com</li><li>图片：https://hexo.fluid-dev.com/img/favicon.png</li></ul>'
+    content: '<hr><p>在下方留言申请加入我的友链，按如下格式提供信息：</p><ul><li>博客名：ljylwnxx</li><li>简介：Fluid 主题官方博客</li><li>链接：https://hexo.fluid-dev.com</li><li>图片：https://hexo.fluid-dev.com/img/favicon.png</li></ul>'
 
   # 评论插件
   # Comment plugin
