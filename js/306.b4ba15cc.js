@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_manage"]=self["webpackChunkvue_manage"]||[]).push([[306],{7306:function(e,n,u){u.r(n),u.d(n,{default:function(){return s}});var a=function(){var e=this,n=e._self._c;return n("div",[e._v("mall")])},l=[],c={name:"Mall"},t=c,r=u(1001),f=(0,r.Z)(t,a,l,!1,null,"cc5fa0ec",null),s=f.exports}}]);
+//# sourceMappingURL=306.b4ba15cc.js.map
